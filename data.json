@@ -5,13 +5,13 @@
         }
     },
     "role_permissions": {
-      "customer": [
+      "Admin": [
         {
           "action": "access",
           "type": "API-dll"
         }
       ],
-      "suporte": [
+      "Suporte": [
         {
           "action": "access",
           "type": "API-dll"
