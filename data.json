@@ -2,6 +2,42 @@
   "users": {
     "string": {
       "roles": ["Admin, Suporte"]
-    }
+      }
+  },
+  "role_permissions": {
+    "customer": [
+      {
+        "action": "access",
+        "type": "API-dll"
+      }
+    ],
+    "suporte": [
+      {
+        "action": "access",
+        "type": "API-dll"
+      }
+    ]
+  }
+}
+
+{
+  "users": {
+    "string": {
+      "roles": ["Admin, Suporte"]
+      }
+  },
+  "role_permissions": {
+    "customer": [
+      {
+        "action": "access",
+        "type": "API-dll"
+      }
+    ],
+    "suporte": [
+      {
+        "action": "access",
+        "type": "API-dll"
+      }
+    ]
   }
 }
