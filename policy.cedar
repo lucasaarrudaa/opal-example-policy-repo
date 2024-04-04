@@ -1,9 +1,7 @@
 permit(
     principal in Role::"Editor",
     action in [
-        Action::"document:read",
-        Action::"document:write",
-        Action::"document:delete"
+        Action::"document:access"
 	],
     resource in ResourceType::"document"
 );
