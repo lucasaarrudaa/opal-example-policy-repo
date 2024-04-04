@@ -1,7 +1,7 @@
 {
   "users": {
     "string": {
-      "roles": ["Admin", "Suporte"]
+      "roles": ["Admin, Suporte"]
     }
   }
 }
