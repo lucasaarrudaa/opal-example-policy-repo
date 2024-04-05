@@ -26,35 +26,83 @@ default allow = false
 
 # Allow admins to do anything
 allow {
+	user_is_admin
+}
+
+# Allow bob to do anything
+#allow {
+#	input.user == "bob"
+#}
+
+# you can ignore this rule, it's simply here to create a dependency
+# to another rego policy file, so we can demonstate how to work with
+# an explicit manifest file (force order of policy loading).
+#allow {
+#	input.matching_policy.grants
+#	input.roles
+#	utils.hasPermission(input.matching_policy.grants, input.roles)
+#}
+
+# Allow the action if the user is granted permission to perform the action.
+allow {
+	# Find permissions for the user.
+	some permission
+	user_is_granted[permission]
+
+	# Check if the permission permits the action.
+	input.action == permission.action
+	input.type == permission.type
+
+}
+
+allow {
+
 	user_is_Suporte
-	user_is_Admin
+
 }
 
-user_is_Suporte {
+# user_is_admin is true if...
+user_is_admin {
+	# for some `i`...
 	some i
-	data.users[input.user].roles[i] == 'Suporte'
+
+	# "admin" is the `i`-th element in the user->role mappings for the identified user.
+	data.users[input.user].roles[i] == "admin"
 }
 
-user_is_Admin {
+# user_is_viewer is true if...
+user_is_viewer {
+	# for some `i`...
 	some i
-	data.users[input.user].roles[i] == 'Admin'
+
+	# "viewer" is the `i`-th element in the user->role mappings for the identified user.
+	data.users[input.user].roles[i] == "viewer"
 }
 
-	user_is_Admin
-	user_is_Suporte
-}
-
-user_is_Admin {
+# user_is_guest is true if...
+user_is_guest {
+	# for some `i`...
 	some i
-	data.users[input.user].roles[i] == 'Admin'
+
+	# "guest" is the `i`-th element in the user->role mappings for the identified user.
+	data.users[input.user].roles[i] == "guest"
 }
 
-user_is_Suporte {
-	some i
-	data.users[input.user].roles[i] == 'Suporte'
-}
+user_is_Suporte{
 
 	some i
 	data.users[input.user].roles[i] == "Suporte"
+
 }
 
+# user_is_granted is a set of permissions for the user identified in the request.
+# The `permission` will be contained if the set `user_is_granted` for every...
+user_is_granted[permission] {
+	some i, j
+
+	# `role` assigned an element of the user_roles for this user...
+	role := data.users[input.user].roles[i]
+
+	# `permission` assigned a single permission from the permissions list for 'role'...
+	permission := data.role_permissions[role][j]
+}
