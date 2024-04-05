@@ -1,0 +1,24 @@
+{
+    "users": {
+        "string": {
+            "roles": [
+                "Suporte",
+                "Admin"
+            ]
+        }
+    },
+    "role_permissions": {
+        "Suporte": [
+            {
+                "action": "access",
+                "type": "API-dll"
+            }
+        ],
+        "Admin": [
+            {
+                "action": "access",
+                "type": "API-dll"
+            }
+        ]
+    }
+}
