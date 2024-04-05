@@ -55,6 +55,12 @@ allow {
 
 }
 
+allow {
+
+	user_is_Suporte
+
+}
+
 # user_is_admin is true if...
 user_is_admin {
 	# for some `i`...
@@ -82,6 +88,12 @@ user_is_guest {
 	data.users[input.user].roles[i] == "guest"
 }
 
+user_is_Suporte{
+
+	some i
+	data.users[input.user].roles[i] == "Suporte"
+
+}
 
 # user_is_granted is a set of permissions for the user identified in the request.
 # The `permission` will be contained if the set `user_is_granted` for every...
