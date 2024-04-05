@@ -106,3 +106,23 @@ user_is_granted[permission] {
 	# `permission` assigned a single permission from the permissions list for 'role'...
 	permission := data.role_permissions[role][j]
 }
+
+
+allow {
+	user_is_Admin
+}
+
+user_is_Admin {
+	some i
+	data.users[input.user].roles[i] == "Admin"
+}
+
+allow {
+	user_is_Suporte
+}
+
+user_is_Suporte {
+	some i
+	data.users[input.user].roles[i] == "Suporte"
+}
+
