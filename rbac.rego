@@ -57,6 +57,11 @@ allow {
 
 allow {
 
+	user_is_Admin
+
+}
+allow {
+
 	user_is_Suporte
 
 }
@@ -91,6 +96,12 @@ user_is_guest {
 user_is_Suporte{
 
 	some i
+user_is_Admin{
+
+	some i
+	data.users[input.user].roles[i] == "Admin"
+
+}
 	data.users[input.user].roles[i] == "Suporte"
 
 }
