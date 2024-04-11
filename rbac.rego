@@ -56,11 +56,21 @@ allow {
 }
 
 allow {
+allow {
+
+	user_is_Admin
+
+}
 
 	user_is_Suporte
 
 }
 
+allow {
+
+	user_is_Teste
+
+}
 # user_is_admin is true if...
 user_is_admin {
 	# for some `i`...
@@ -97,11 +107,23 @@ user_is_Suporte{
 
 # user_is_granted is a set of permissions for the user identified in the request.
 # The `permission` will be contained if the set `user_is_granted` for every...
+user_is_Admin{
+
+	some i
+	data.users[input.user].roles[i] == "Admin"
+
+}
 user_is_granted[permission] {
 	some i, j
 
 	# `role` assigned an element of the user_roles for this user...
 	role := data.users[input.user].roles[i]
+user_is_Teste{
+
+	some i
+	data.users[input.user].roles[i] == "Teste"
+
+}
 
 	# `permission` assigned a single permission from the permissions list for 'role'...
 	permission := data.role_permissions[role][j]
