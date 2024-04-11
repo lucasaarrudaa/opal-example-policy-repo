@@ -1,34 +1,4 @@
-
-package app.rbac
-
-default allow = false
-
 allow {
-	user_is_admin
-}
-
-allow {
-	some permission
-	user_is_granted[permission]
-
-	input.action == permission.action
-	input.type == permission.type
-
-}
-
-allow {
-
-allow {
-
-	user_is_Admin
-
-}
-
-allow {
-
-	user_is_Teste
-
-}
 
 	user_is_Suporte
 
@@ -59,24 +29,50 @@ user_is_Suporte{
 
 }
 
-user_is_granted[permission] {
+allow {
 
-user_is_Teste{
+	user_is_Admin
 
-	some i
-	data.users[input.user].roles[i] == "Teste"
+}
+allow {
+
+	user_is_Teste
 
 }
 
+package app.rbac
+
+default allow = false
+
+allow {
+	user_is_admin
+}
+
+allow {
+	some permission
+	user_is_granted[permission]
+
+	input.action == permission.action
+	input.type == permission.type
+
+}
+
+user_is_granted[permission] {
+	some i, j
+
+	role := data.users[input.user].roles[i]
+
+	permission := data.role_permissions[role][j]
+}
 user_is_Admin{
 
 	some i
 	data.users[input.user].roles[i] == "Admin"
 
 }
-	some i, j
+user_is_Teste{
 
-	role := data.users[input.user].roles[i]
+	some i
+	data.users[input.user].roles[i] == "Teste"
 
-	permission := data.role_permissions[role][j]
 }
