@@ -18,8 +18,11 @@
             {
                 "action": "access",
                 "type": "API-dll"
+            },
+            {
+                "action": "access",
+                "type": "API-telescopein"
             }
         ]
     }
 }
-
