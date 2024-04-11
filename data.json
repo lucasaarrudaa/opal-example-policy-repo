@@ -5,6 +5,11 @@
                 "Suporte",
                 "Admin"
             ]
+        },
+        "string3": {
+            "roles": [
+                "Teste"
+            ]
         }
     },
     "role_permissions": {
@@ -19,6 +24,12 @@
                 "action": "access",
                 "type": "API-dll"
             },
+            {
+                "action": "access",
+                "type": "API-telescopein"
+            }
+        ],
+        "Teste": [
             {
                 "action": "access",
                 "type": "API-telescopein"
