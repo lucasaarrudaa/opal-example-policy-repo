@@ -24,6 +24,16 @@ allow {
 user_is_admin {
 	some i
 
+
+user_is_Admin{
+	some i
+	data.users[input.user].roles[i] == "Admin"
+}
+
+user_is_Teste{
+	some i
+	data.users[input.user].roles[i] == "Teste"
+}
 	data.users[input.user].roles[i] == "admin"
 }
 
