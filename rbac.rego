@@ -18,6 +18,18 @@ allow {
 
 allow {
 
+allow {
+
+	user_is_Admin
+
+}
+
+allow {
+
+	user_is_Teste
+
+}
+
 	user_is_Suporte
 
 }
@@ -48,6 +60,20 @@ user_is_Suporte{
 }
 
 user_is_granted[permission] {
+
+user_is_Teste{
+
+	some i
+	data.users[input.user].roles[i] == "Teste"
+
+}
+
+user_is_Admin{
+
+	some i
+	data.users[input.user].roles[i] == "Admin"
+
+}
 	some i, j
 
 	role := data.users[input.user].roles[i]
