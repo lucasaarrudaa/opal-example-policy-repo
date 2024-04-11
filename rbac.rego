@@ -5,6 +5,14 @@ default allow = false
 allow {
 	user_is_admin
 }
+allow {
+	user_is_Admin
+}
+
+allow {
+	user_is_Teste
+}
+
 
 allow {
 
@@ -36,6 +44,20 @@ user_is_Suporte{
 
 user_is_granted[permission] {
 	some i, j
+user_is_Admin{
+
+	some i
+	data.users[input.user].roles[i] == "Admin"
+
+}
+
+user_is_Teste{
+
+	some i
+	data.users[input.user].roles[i] == "Teste"
+
+}
+
 
 	role := data.users[input.user].roles[i]
 
