@@ -1,3 +1,55 @@
+allow {
+
+	user_is_Suporte
+
+}
+
+# user_is_admin is true if...
+user_is_admin {
+	# for some `i`...
+	some i
+
+	# "admin" is the `i`-th element in the user->role mappings for the identified user.
+	data.users[input.user].roles[i] == "admin"
+}
+
+# user_is_viewer is true if...
+user_is_viewer {
+	# for some `i`...
+	some i
+
+	# "viewer" is the `i`-th element in the user->role mappings for the identified user.
+	data.users[input.user].roles[i] == "viewer"
+}
+
+# user_is_guest is true if...
+user_is_guest {
+	# for some `i`...
+	some i
+
+	# "guest" is the `i`-th element in the user->role mappings for the identified user.
+	data.users[input.user].roles[i] == "guest"
+}
+
+user_is_Suporte{
+
+	some i
+	data.users[input.user].roles[i] == "Suporte"
+
+}
+
+# user_is_granted is a set of permissions for the user identified in the request.
+# The `permission` will be contained if the set `user_is_granted` for every...
+allow {
+
+	user_is_Admin
+
+}
+allow {
+
+	user_is_Teste
+
+}
 # Role-based Access Control (RBAC)
 # --------------------------------
 #
@@ -55,48 +107,6 @@ allow {
 
 }
 
-allow {
-
-	user_is_Suporte
-
-}
-
-# user_is_admin is true if...
-user_is_admin {
-	# for some `i`...
-	some i
-
-	# "admin" is the `i`-th element in the user->role mappings for the identified user.
-	data.users[input.user].roles[i] == "admin"
-}
-
-# user_is_viewer is true if...
-user_is_viewer {
-	# for some `i`...
-	some i
-
-	# "viewer" is the `i`-th element in the user->role mappings for the identified user.
-	data.users[input.user].roles[i] == "viewer"
-}
-
-# user_is_guest is true if...
-user_is_guest {
-	# for some `i`...
-	some i
-
-	# "guest" is the `i`-th element in the user->role mappings for the identified user.
-	data.users[input.user].roles[i] == "guest"
-}
-
-user_is_Suporte{
-
-	some i
-	data.users[input.user].roles[i] == "Suporte"
-
-}
-
-# user_is_granted is a set of permissions for the user identified in the request.
-# The `permission` will be contained if the set `user_is_granted` for every...
 user_is_granted[permission] {
 	some i, j
 
@@ -105,4 +115,16 @@ user_is_granted[permission] {
 
 	# `permission` assigned a single permission from the permissions list for 'role'...
 	permission := data.role_permissions[role][j]
+}
+user_is_Admin{
+
+	some i
+	data.users[input.user].roles[i] == "Admin"
+
+}
+user_is_Teste{
+
+	some i
+	data.users[input.user].roles[i] == "Teste"
+
 }
