@@ -14,13 +14,11 @@ allow {
 
 allow {
 
-allow {
-	user_is_Admin
+	user_is_Teste
+
 }
 
 allow {
-	user_is_Teste
-}
 	some permission
 	user_is_granted[permission]
 
@@ -42,17 +40,14 @@ user_is_Suporte{
 
 }
 
-user_is_granted[permission] {
-
-user_is_Admin{
-	some i
-	data.users[input.user].roles[i] == "Admin"
-}
-
 user_is_Teste{
+
 	some i
 	data.users[input.user].roles[i] == "Teste"
+
 }
+
+user_is_granted[permission] {
 	some i, j
 
 	role := data.users[input.user].roles[i]
